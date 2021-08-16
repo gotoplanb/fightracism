@@ -66,8 +66,11 @@
                 <div class="field-items">
                     <div class="field-item even" property="content:encoded">
 <!-- BEGIN -->
-<script src="https://cdn.jsdelivr.net/npm/greensock@1.20.2/dist/TweenLite.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/waypoints@4.0.1/lib/jquery.waypoints.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/waypoints@4.0.1/lib/shortcuts/inview.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/greensock@1.20.2/dist/TweenLite.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/scrollmagic@2.0.8/scrollmagic/uncompressed/ScrollMagic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/scrollmagic@2.0.5/scrollmagic/minified/plugins/jquery.ScrollMagic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/scrollmagic@2.0.5/scrollmagic/minified/plugins/animation.gsap.min.js"></script>
@@ -140,13 +143,17 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula tincidunt lacus eget molestie. Morbi venenatis enim vitae odio porta, id ultricies risus semper. Integer efficitur posuere purus. Maecenas urna augue, pellentesque sed sagittis id, commodo non ligula. Suspendisse elit nunc, commodo nec risus at, condimentum scelerisque est. In ut rutrum metus. Praesent aliquam suscipit aliquam. Donec malesuada dictum nulla, id ultrices mauris feugiat et. Morbi ultricies feugiat ultricies. Aenean imperdiet sem in ullamcorper accumsan.</p>
         <p>Sed ultricies mauris lorem. Sed eros sapien, aliquam sit amet neque eu, aliquet efficitur justo. Phasellus malesuada ornare ipsum, sit amet blandit erat convallis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ornare at tortor in viverra. Integer consequat placerat tortor, eget sollicitudin nisl ullamcorper euismod. Cras non velit aliquet, condimentum lectus non, auctor dolor. Curabitur id turpis diam. Pellentesque porttitor nulla sem. Donec in congue dolor. Maecenas dignissim elit turpis, sit amet auctor nibh fermentum nec. Ut condimentum eros ut nunc mollis, a tincidunt enim efficitur. Sed sodales lacus id leo luctus ultricies.</p>
       </div>
-      <div class="col-sm-12 col-md-4 rellax" data-rellax-speed="3" data-rellax-percentage="0.5">
-        <img src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production+Library/13-11-2019_FAO-Nepal_ClimateMitigation.jpg/image560x340cropped.jpg" height="400">
+      <div class="col-sm-12 col-md-4" id="inview-example">
+        <a id="play-video" href="#">Play Video</a><br />
+        <iframe id="video" width="420" height="315" src="//www.youtube.com/embed/Zsqep7_9_mw?rel=0" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <hr>
     <div class="row">
       <div class="col-sm-12 col-md-8 col-md-offset-2">
+        <div class="col-sm-12 col-md-4 rellax" data-rellax-speed="3" data-rellax-percentage="0.5">
+          <img src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production+Library/13-11-2019_FAO-Nepal_ClimateMitigation.jpg/image560x340cropped.jpg" height="400">
+        </div>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula tincidunt lacus eget molestie. Morbi venenatis enim vitae odio porta, id ultricies risus semper. Integer efficitur posuere purus. Maecenas urna augue, pellentesque sed sagittis id, commodo non ligula. Suspendisse elit nunc, commodo nec risus at, condimentum scelerisque est. In ut rutrum metus. Praesent aliquam suscipit aliquam. Donec malesuada dictum nulla, id ultrices mauris feugiat et. Morbi ultricies feugiat ultricies. Aenean imperdiet sem in ullamcorper accumsan.</p>
         <p>Sed ultricies mauris lorem. Sed eros sapien, aliquam sit amet neque eu, aliquet efficitur justo. Phasellus malesuada ornare ipsum, sit amet blandit erat convallis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ornare at tortor in viverra. Integer consequat placerat tortor, eget sollicitudin nisl ullamcorper euismod. Cras non velit aliquet, condimentum lectus non, auctor dolor. Curabitur id turpis diam. Pellentesque porttitor nulla sem. Donec in congue dolor. Maecenas dignissim elit turpis, sit amet auctor nibh fermentum nec. Ut condimentum eros ut nunc mollis, a tincidunt enim efficitur. Sed sodales lacus id leo luctus ultricies.</p>
         <p>Curabitur non finibus nulla. Mauris ullamcorper, lacus in pulvinar maximus, nunc sapien maximus magna, sed ullamcorper ipsum odio a tortor. Suspendisse potenti. Nunc hendrerit, lorem sit amet venenatis fermentum, nisl nisl interdum tellus, eget rhoncus mi neque eget risus. Sed ut mattis velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras dapibus luctus nisi. Praesent rhoncus viverra euismod. Aliquam ut enim dignissim leo facilisis sollicitudin. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis quis nisl interdum, sodales arcu non, fermentum erat.</p>
@@ -159,7 +166,41 @@
 <script>
   if (screen.width >= 600) {
     var rellax = new Rellax('.rellax');
-  }
+
+    // TEMP play button to start the youtube video. 
+    jQuery(document).ready(function() {
+      jQuery('#play-video').on('click', function(ev) {
+     
+        jQuery("#video")[0].src += "&autoplay=1";
+        ev.preventDefault();
+     
+      });
+    });
+
+    // Using Waypoints Inview shortcut
+    jQuery( document ).ready(function() {
+      console.log( "ready!" );
+      var inview = new Waypoint.Inview({
+        element: jQuery('#inview-example')[0],
+        enter: function(direction) {
+          console.log('Enter triggered with direction ' + direction)
+          jQuery("#video")[0].src += "&autoplay=1";
+        },
+        entered: function(direction) {
+          console.log('Entered triggered with direction ' + direction)
+        },
+        exit: function(direction) {
+          console.log('Exit triggered with direction ' + direction)
+        },
+        exited: function(direction) {
+          console.log('Exited triggered with direction ' + direction)
+        }
+      })
+    });
+
+  } 
+  
+
 </script>
 
 <!-- END -->
